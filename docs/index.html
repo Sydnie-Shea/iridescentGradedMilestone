@@ -36,8 +36,21 @@
 
 <h2 align="middle">Summary</h2>
 <p>
+  So far, we have done two main parts: the first part was refactoring the code to include information about wavelengths, and the second part was actually creating an iridescent material, which will be shown later.
+  In the first part, we had to include wavelengths in our calculations because the main point of iridescence is that we need to rely on spectral light. In order to implement this, we need to sample wavelenths of Red,
+  Green and Blue values (which we modelled as a normal distribution). For every sample, we used three separate normal distributions to represent the red green and blue lights, which we then modelled from normal distributions. 
+  We then got a sample from each distribution to model the specific wavelength for that sample. We then had to refactor all the code from projects 3-1 and 3-2 in order to account for the passing of these wavelengths to different functions. 
+
+</p>
+<p>
+  The next step was to create a material with a thin film that would help us create the iridescent effect. We started out with the microfacet material code as a base here. The microfacet material relies on using the Fresnel term as part of the equation to determine the 
+  microfacet BSDF. In order to account for the thin film, we had to also edit the Fresnel term. This involved calculated the Fresnel term seperately for all of the 3 wavelengths (R, G, B corresponding) that we passed in. The first step was calculating the angles which 
+  the ray entered and left the thin film, and to do so, we called refract twice using the appropriate index of refraction in terms of the wavelength and the material. We then used the angles and the index of refraction of the air, the thin film, and the actual object. Using these 
+  values, we are able to calculate the reflection and transmission between the thin film and the material. We then accounted for phase changes, which had to take into the thickness of the material and the wavelength of the ray hitting the material.
+  Using these values from the previous equations, we are able to calculate the value of the transmission. Using the transmission, we can find out the reflectance using the conservation of energy. Applying this to the red, green, and blue wavelengths passed in results in the iridescent effect.
 </p>
 
+<h2 align="middle">Results</h2>
 
 </body>
 </html>
